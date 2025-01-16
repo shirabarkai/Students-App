@@ -1,18 +1,15 @@
 package com.example.assignments;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
-
 import java.util.List;
 
 public class StudentListActivity extends AppCompatActivity {
@@ -31,6 +28,12 @@ public class StudentListActivity extends AppCompatActivity {
         studentRecyclerAdapter adapter = new studentRecyclerAdapter();
         studentList.setAdapter(adapter);
 
+        Button addStudentButton = findViewById(R.id.studentList_add_student_btn);
+        addStudentButton.setOnClickListener(View -> {
+            Intent editIntent = new Intent(StudentListActivity.this, AddStudent.class);
+            startActivity(editIntent);
+        });
+
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int pos) {
@@ -39,6 +42,8 @@ public class StudentListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 
     class StudentViewHolder extends RecyclerView.ViewHolder {
@@ -51,6 +56,7 @@ public class StudentListActivity extends AppCompatActivity {
             nameTv = itemView.findViewById(R.id.studentlistrow_name_tv);
             idTv = itemView.findViewById(R.id.studentlistrow_id_tv);
             cb = itemView.findViewById(R.id.studentlistrow_cb);
+            cb.setEnabled(false);
 
             cb.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -108,5 +114,4 @@ public class StudentListActivity extends AppCompatActivity {
             return data.size();
         }
     }
-
 }

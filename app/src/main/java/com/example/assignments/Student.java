@@ -1,9 +1,5 @@
 package com.example.assignments;
 
-import android.widget.CheckBox;
-import android.widget.TextView;
-
-
 public class Student {
     private String name;
     private String id;
